@@ -1,0 +1,58 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% endblock css %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="text-center alert-success bg-success {{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div id="login">
+        <h2 class="text-center text-black pt-5">MUSIC PRO</h2>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        
+                        <form id="login-form" class="form" action="/registering/" method="post">
+                            {% csrf_token %}
+                            <h3 class="text-center text-black">Register</h3>
+                            <div class="form-floating mb-3">
+                                <input type="Nombre" name="nom_user" class="form-control" id="nom_user" placeholder="Nombre">
+                                <label for="floatingInput">Nombre</label><br>
+                            </div>
+                            <div class="form-floating">
+                                <input type="Email" name="email_user" class="form-control" id="email_user" placeholder="Email">
+                                <label for="floatingPassword">Email</label><br>
+                            </div>
+                            <div class="form-floating">
+                                <input type="Rut" name="rut_user" class="form-control" id="rut_user" placeholder="Rut">
+                                <label for="floatingPassword">Rut</label><br>
+                            </div>                            
+                            <div class="form-floating">
+                                <input type="edad" name="edad" class="form-control" id="edad" placeholder="edad">
+                                <label for="floatingPassword">edad</label><br>
+                            </div>
+                            <div class="form-floating">
+                                <input type="password" name="pass_user" class="form-control" id="pass_user" placeholder="Password">
+                                <label for="floatingPassword">Password</label><br>
+                            </div>
+
+                            <div id="register-link" class="text-center">
+                                <input type="submit" name="submit" class="text-center btn btn-info bg-black btn-md " value="Registrar">
+                            </div>
+							<hr>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %} 

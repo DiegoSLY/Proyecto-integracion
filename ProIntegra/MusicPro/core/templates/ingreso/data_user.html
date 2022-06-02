@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+  
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    {% endblock css %}
+    <!-- CARROUSEL-->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="text-center alert-success bg-success {{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container">
+        <div class="row">
+
+            <section class="content">
+                <h1>Usuarios Registrados</h1>
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success btn-filter" data-target="pagado"><a class="text-white" href="{% url 'confi_admin' %}">Volver<a></button>
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-container">
+                                <table class="table table-filter">
+                                    <tbody>
+                                        <h1> usuarios: {{datalen}} </h1>
+                                        {% for i in data %}
+                                            <tr data-status="pagado">
+                                                    <div class="list-group">
+                                                        <div class="list-group">
+                                                            <h4 class="title alert-dark">
+                                                                <span class="list-group pull-right text-dark">edad: {{i.age_user}}</span>
+                                                                {{i.nom_user}}
+                                                                <p>rut: {{i.rut_user}}</p>
+                                                                email: {{i.email_user}}
+                                                                <span class="pull-center pagado">
+                                                                    <form id="login-form" class="form" action="/updateing/" method="POST">
+                                                                        <label for="remember-me" class="text-info pull-right" name="iduser" id="iduser">id: {{i.id_user}}</label><br>
+                                                                        {% csrf_token %}
+                                                                        tipo usuario: ({{i.tipo_user}})
+                                                                        <select type="text" value="Cambia" name="tipo_user" class="form-control" id="tipo_user">
+                                                                            <option value="" selected disabled hidden>Cambia aquí</option>
+                                                                            <option>Administrador</option>
+                                                                            <option>Bodeguero</option>
+                                                                            <option>Vendedor</option>
+                                                                            <option>Cliente</option>
+                                                                        </select>
+                                                                        <input type="hidden" id="email_user" name="email_user" value="{{i.email_user}}">
+                                                                        <button value="submit" type="submit" name="submit" class="btn btn-warning btn-filter" data-target="pendiente">EDITAR</button>
+                                                                    </form>
+                                                                    <form id="login-form2" class="form" action="/deleteing/" method="POST">
+                                                                        {% csrf_token %}
+                                                                        <input type="hidden" id="id_user" name="id_user" value="{{i.id_user}}">
+                                                                        <button value="submit" type="submit" name="submit2" class="btn btn-danger btn-filter" data-target="cancelado">ELIMINAR</button>
+                                                                    </form>
+                                                                </span>    
+                                                            </h4>
+                                                        </div>
+                                                        <div class="pull-right">
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-info btn-filter" data-target="pagado"><a class="text-white" href="{% url 'data_user' %}">INFORME-COMPRAS<a></button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <hr>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-footer">
+                        <p>
+                            MusicPro © - 2022 <br>
+                        
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+
+{% endblock contenido %} 
