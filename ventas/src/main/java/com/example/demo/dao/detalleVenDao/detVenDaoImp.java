@@ -1,6 +1,6 @@
 package com.example.demo.dao.detalleVenDao;
 
-import com.example.demo.models.detVenModel;
+import com.example.demo.models.detalleVenModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,12 +15,12 @@ public class detVenDaoImp implements detVenDao {
     detVenDaoJpa detVenJpa;
 
     @Override
-    public void createDetVen(detVenModel detVen) {
+    public void createDetVen(detalleVenModel detVen) {
         detVenJpa.save(detVen);
     }
 
     @Override
-    public List<detVenModel> getAllDetVen() {
+    public List<detalleVenModel> getAllDetVen() {
         return detVenJpa.findAll();
     }
 
@@ -30,7 +30,7 @@ public class detVenDaoImp implements detVenDao {
     }
 
     @Override
-    public detVenModel getDetVen(int idDetVen) {
+    public detalleVenModel getDetVen(int idDetVen) {
         try{
             return detVenJpa.findById(idDetVen).orElse(null);
         }catch (Exception e){
@@ -40,7 +40,7 @@ public class detVenDaoImp implements detVenDao {
     }
 
     @Override
-    public void updateDetVen(detVenModel detVen) {
+    public void updateDetVen(detalleVenModel detVen) {
         detVenJpa.save(detVen);
     }
 }

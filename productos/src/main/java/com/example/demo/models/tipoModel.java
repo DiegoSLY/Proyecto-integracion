@@ -13,14 +13,14 @@ public class tipoModel implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id_tipo")
     private int id_tipo;
-    @Column(name = "nom_tip")
-    private String nom_tip;
+    @Column(name = "nom_tipo")
+    private String nom_tipo;
 
     public tipoModel() {
     }
 
-    public tipoModel(String nom_tip) {
-        this.nom_tip = nom_tip;
+    public tipoModel(String nom_tipo) {
+        this.nom_tipo = nom_tipo;
     }
 
     public int getId_tipo() {
@@ -31,11 +31,11 @@ public class tipoModel implements Serializable {
         this.id_tipo = id_tipo;
     }
 
-    public String getNom_tip() {
-        return nom_tip;
+    public String getNom_tipo() {
+        return nom_tipo;
     }
 
-    public void setNom_tip(String nom_tip) {
-        this.nom_tip = nom_tip;
+    public void setNom_tipo(String nom_tipo) {
+        this.nom_tipo = nom_tipo;
     }
 }

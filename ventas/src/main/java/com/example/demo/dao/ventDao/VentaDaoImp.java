@@ -1,6 +1,6 @@
 package com.example.demo.dao.ventDao;
 
-import com.example.demo.models.ventModel;
+import com.example.demo.models.ventasModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,12 +15,12 @@ public class VentaDaoImp implements ventaDao {
     ventaDaoJpa bodJpa;
 
     @Override
-    public void createVenta(ventModel venta) {
+    public void createVenta(ventasModel venta) {
         bodJpa.save(venta);
     }
 
     @Override
-    public List<ventModel> getAllVenta() {
+    public List<ventasModel> getAllVenta() {
         return bodJpa.findAll();
     }
 
@@ -30,7 +30,7 @@ public class VentaDaoImp implements ventaDao {
     }
 
     @Override
-    public ventModel getVenta(int idVen) {
+    public ventasModel getVenta(int idVen) {
         try{
             return bodJpa.findById(idVen).orElse(null);
         }catch (Exception e){
@@ -40,7 +40,7 @@ public class VentaDaoImp implements ventaDao {
     }
 
     @Override
-    public void updateVenta(ventModel venta) {
+    public void updateVenta(ventasModel venta) {
         bodJpa.save(venta);
     }
 }

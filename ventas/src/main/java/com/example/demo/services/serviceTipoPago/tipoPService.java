@@ -1,18 +1,18 @@
 package com.example.demo.services.serviceTipoPago;
 
-import com.example.demo.models.tippagoModel;
+import com.example.demo.models.tipoPagoModel;
 
 
 import java.util.List;
 
 public interface tipoPService {
-    boolean createtipoPago(tippagoModel tipoPago);
+    boolean createtipoPago(tipoPagoModel tipoPago);
 
-    List<tippagoModel> getAlltipoPago();
+    List<tipoPagoModel> getAlltipoPago();
 
     boolean deltipoPago(int id_tpag);
 
-    tippagoModel gettipoPago(int id_tpag);
+    tipoPagoModel gettipoPago(int id_tpag);
 
-    void updatetipoPago(tippagoModel tipoPago);
+    void updatetipoPago(tipoPagoModel tipoPago);
 }

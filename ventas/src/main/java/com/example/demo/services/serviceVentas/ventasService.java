@@ -1,19 +1,19 @@
 package com.example.demo.services.serviceVentas;
 
-import com.example.demo.models.ventModel;
+import com.example.demo.models.ventasModel;
 
 
 import java.util.List;
 
 public interface ventasService {
 
-    boolean createventas(ventModel ventas);
+    boolean createventas(ventasModel ventas);
 
-    List<ventModel> getAllventas();
+    List<ventasModel> getAllventas();
 
     boolean delventas(int id_ventas);
 
-    ventModel getventas(int id_ventas);
+    ventasModel getventas(int id_ventas);
 
-    void updateventas(ventModel ventas);
+    void updateventas(ventasModel ventas);
 }

@@ -1,7 +1,7 @@
 package com.example.demo.services.serviceDet;
 
 import com.example.demo.dao.detalleVenDao.detVenDaoImp;
-import com.example.demo.models.detVenModel;
+import com.example.demo.models.detalleVenModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +16,8 @@ public class DetalleServiceImp implements DetalleService{
 
 
     @Override
-    public boolean createDetalleVenta(detVenModel DetalleVenta) {
-        if(daoDetVenImp.getDetVen(DetalleVenta.getId_det_vent())==null) {
+    public boolean createDetalleVenta(detalleVenModel DetalleVenta) {
+        if(daoDetVenImp.getDetVen(DetalleVenta.getId_detven())==null) {
             daoDetVenImp.createDetVen(DetalleVenta);
             msg = "Detalle de venta agregado a la bodega correctamente";
             System.out.println(msg);
@@ -30,7 +30,7 @@ public class DetalleServiceImp implements DetalleService{
     }
 
     @Override
-    public List<detVenModel> getAllDetalleVenta() {
+    public List<detalleVenModel> getAllDetalleVenta() {
         msg = "Detalles de venta de la bodega encontrados";
         System.out.println(msg);
         return daoDetVenImp.getAllDetVen();
@@ -51,15 +51,15 @@ public class DetalleServiceImp implements DetalleService{
     }
 
     @Override
-    public detVenModel getDetalleVenta(int id_detven) {
+    public detalleVenModel getDetalleVenta(int id_detven) {
         msg = "Detalle de venta encontrado";
         System.out.println(msg);
         return daoDetVenImp.getDetVen(id_detven);
     }
 
     @Override
-    public void updateDetalleVenta(detVenModel DetalleVenta) {
-        if (daoDetVenImp.getDetVen(DetalleVenta.getId_det_vent())!=null){
+    public void updateDetalleVenta(detalleVenModel DetalleVenta) {
+        if (daoDetVenImp.getDetVen(DetalleVenta.getId_detven())!=null){
             daoDetVenImp.updateDetVen(DetalleVenta);
         };
         msg = "Detalle de venta no encontrado";

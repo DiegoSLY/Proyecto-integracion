@@ -1,19 +1,19 @@
 package com.example.demo.dao.tipoPagoDao;
 
-import com.example.demo.models.tippagoModel;
+import com.example.demo.models.tipoPagoModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public interface tPagoDao {
-    void createTPago(tippagoModel tPago);
+    void createTPago(tipoPagoModel tPago);
 
-    List<tippagoModel> getAllTPago();
+    List<tipoPagoModel> getAllTPago();
 
     void delTPago(int idTPago);
 
-    tippagoModel getTPago(int idTPago);
+    tipoPagoModel getTPago(int idTPago);
 
-    void updateTPago(tippagoModel tPago);
+    void updateTPago(tipoPagoModel tPago);
 }

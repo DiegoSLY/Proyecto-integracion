@@ -1,6 +1,6 @@
 package com.example.demo.dao.ventDao;
 
-import com.example.demo.models.ventModel;
+import com.example.demo.models.ventasModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -8,13 +8,13 @@ import java.util.List;
 @Component
 public interface ventaDao {
 
-    void createVenta(ventModel venta);
+    void createVenta(ventasModel venta);
 
-    List<ventModel> getAllVenta();
+    List<ventasModel> getAllVenta();
 
     void delVenta(int idVen);
 
-    ventModel getVenta(int idVen);
+    ventasModel getVenta(int idVen);
 
-    void updateVenta(ventModel venta);
+    void updateVenta(ventasModel venta);
 }

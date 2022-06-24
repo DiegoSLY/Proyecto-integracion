@@ -1,6 +1,6 @@
 package com.example.demo.dao.tipoPagoDao;
 
-import com.example.demo.models.tippagoModel;
+import com.example.demo.models.tipoPagoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,12 +15,12 @@ public class tPagoDaoImp implements tPagoDao {
     tPagoDaoJpa tipoJpa;
 
     @Override
-    public void createTPago(tippagoModel tPago) {
+    public void createTPago(tipoPagoModel tPago) {
         tipoJpa.save(tPago);
     }
 
     @Override
-    public List<tippagoModel> getAllTPago() {
+    public List<tipoPagoModel> getAllTPago() {
         return tipoJpa.findAll();
     }
 
@@ -30,7 +30,7 @@ public class tPagoDaoImp implements tPagoDao {
     }
 
     @Override
-    public tippagoModel getTPago(int idTPago) {
+    public tipoPagoModel getTPago(int idTPago) {
         try{
             return tipoJpa.findById(idTPago).orElse(null);
         }catch (Exception e){
@@ -40,7 +40,7 @@ public class tPagoDaoImp implements tPagoDao {
     }
 
     @Override
-    public void updateTPago(tippagoModel tPago) {
+    public void updateTPago(tipoPagoModel tPago) {
         tipoJpa.save(tPago);
     }
 }

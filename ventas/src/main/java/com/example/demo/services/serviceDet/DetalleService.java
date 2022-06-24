@@ -1,18 +1,18 @@
 package com.example.demo.services.serviceDet;
 
-import com.example.demo.models.detVenModel;
+import com.example.demo.models.detalleVenModel;
 
 
 import java.util.List;
 
 public interface DetalleService {
-    boolean createDetalleVenta(detVenModel DetalleVenta);
+    boolean createDetalleVenta(detalleVenModel DetalleVenta);
 
-    List<detVenModel> getAllDetalleVenta();
+    List<detalleVenModel> getAllDetalleVenta();
 
     boolean delDetalleVenta(int id_detven);
 
-    detVenModel getDetalleVenta(int id_detven);
+    detalleVenModel getDetalleVenta(int id_detven);
 
-    void updateDetalleVenta(detVenModel venta);
+    void updateDetalleVenta(detalleVenModel venta);
 }

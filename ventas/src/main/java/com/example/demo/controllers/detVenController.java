@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.detVenModel;
+import com.example.demo.models.detalleVenModel;
 import com.example.demo.services.serviceDet.DetalleServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,22 +21,22 @@ public class detVenController {
     }
 
     @GetMapping(value = "/DetallesVentas", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<detVenModel> getAllDetalleVenta() {
+    public List<detalleVenModel> getAllDetalleVenta() {
         return venService.getAllDetalleVenta();
     }
 
     @GetMapping(value = "/DetalleVenta/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public detVenModel getDetVenId(@PathVariable("id") int id) {
+    public detalleVenModel getDetVenId(@PathVariable("id") int id) {
         return venService.getDetalleVenta(id);
     }
 
     @PostMapping(value = "/loadDetalleVenta", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String loadDetalleVenta(@RequestBody detVenModel newDetVent) {
+    public String loadDetalleVenta(@RequestBody detalleVenModel newDetVent) {
         return String.valueOf(venService.createDetalleVenta(newDetVent));
     }
 
     @PutMapping(value = "/updateDetalleVenta", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateDetalleVenta(@RequestBody detVenModel detVenCreated) {
+    public void updateDetalleVenta(@RequestBody detalleVenModel detVenCreated) {
         venService.updateDetalleVenta(detVenCreated);
     }
 
