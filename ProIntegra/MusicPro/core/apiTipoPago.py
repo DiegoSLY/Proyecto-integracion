@@ -3,27 +3,27 @@ import requests
 import json
 
 
-def getAllVentas():
+def getAllTipoPago():
     try:
-        key="ventas"
+        key="tipoPagos"
         url="https://springbootventa.herokuapp.com/" + key
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
             data = respuesta.json()
-            pprint(data)
-            print(print("se logró"+ str(respuesta)))
+            #pprint(data)
+            #print(print("se logró"+ str(respuesta)))
         else:
             print(print("NO se logró" + str(respuesta)))
         return data
     except Exception as e:
         print(e)
 
-#getAllVentas()
+#getAllTipoPago()
 
-def getVenta(id):
+def getTipoPago(id):
 
     try:
-        url="https://springbootventa.herokuapp.com/venta/"+ str(id)
+        url="https://springbootventa.herokuapp.com/tipoPago/"+ str(id)
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
             print(print("se logró"+ str(respuesta)))
@@ -37,9 +37,9 @@ def getVenta(id):
     except Exception as e:
         print(e)
 
-#getVenta(1)
+#getTipoPago(1)
 
-def gettVentaByDetalle(detalle):
+def getTipoPagoby(detalle):  #NO REALIZADA
     try:
         key="ventas"
         url="https://springbootventa.herokuapp.com/" + key
@@ -66,13 +66,13 @@ def gettVentaByDetalle(detalle):
         
 #gettVentaByDetalle(2);
 
-def loadVenta(product_id,user_id,detalle_ven_id_detven):
+def loadTipoPago(pago_tpag):
     try:
-        url="https://springbootventa.herokuapp.com/loadInVenta"
+        url="https://springbootventa.herokuapp.com/loadTipoPago"
         respuesta = False
     
-        if len(product_id) <= 10:
-            dato = {"product_id": product_id,"user_id": user_id,"detalle_ven_id_detven": detalle_ven_id_detven}
+        if len(pago_tpag) <= 20:
+            dato = {"pago_tpag": pago_tpag}
             respuesta = requests.post(url, json = dato )
             if respuesta.status_code == 200:
                 print(print("se logró"+ str(respuesta)))
@@ -87,15 +87,15 @@ def loadVenta(product_id,user_id,detalle_ven_id_detven):
         pprint(data)
     return  respuesta
       
-#loadVenta("24",24,4)  
+#loadTipoPago("cheque")  
 
-def updateVenta(id_ventas,product_id,user_id,detalle_ven_id_detven):
+def updateTipoPago(id_tpag,pago_tpag):
     try:
-        url="https://springbootventa.herokuapp.com/updateVenta"
+        url="https://springbootventa.herokuapp.com/updateTipoPago"
         respuesta = False
     
-        if len(id_ventas) <= 10:
-            dato = {'id_ventas': id_ventas,"product_id":product_id,"user_id":user_id,"detalle_ven_id_detven":detalle_ven_id_detven}
+        if len(pago_tpag) <= 100:
+            dato = {'id_tpag': id_tpag,"pago_tpag":pago_tpag}
             respuesta = requests.put(url, json = dato )
             if respuesta.status_code == 200:
                 print(print("se logró"+ str(respuesta)))
@@ -110,18 +110,18 @@ def updateVenta(id_ventas,product_id,user_id,detalle_ven_id_detven):
         pprint(data)
     return  respuesta  
 
-#getAllVentas()
-#updateVenta("1","2","84","1")
+#getAllTipoPago()
+#updateTipoPago(34,"cheque")
 
-def delVentaById(id):
+def delTipoPagoById(id):
     try:
-        data = getVenta(id)
+        data = getTipoPago(id)
         respuesta = False
-        url="https://springbootventa.herokuapp.com/delVenta/" + str(id)
+        url="https://springbootventa.herokuapp.com/delTipoPago/" + str(id)
         if id >= 0:
             respuesta = requests.delete(url)
             if respuesta.status_code == 200:
-                print("se logró"+ str(respuesta) + " eliminaste a la venta: " + data["id_ventas"])
+                print("se logró"+ str(respuesta) + " eliminaste a la venta: " + data["pago_tpag"])
                 print("se logró")
             else:
                 print(print("NO se logró, id no encontrada"+ str(respuesta)))
@@ -133,9 +133,9 @@ def delVentaById(id):
         print("No se logró, hubo un error")
         print(e)
 
-#delVentaById(4)
-#getVenta(4)
-#getAllVentas()
+#delTipoPagoById(24)
+#getTipoPago(5)
+#getAllTipoPago()
     
 
     

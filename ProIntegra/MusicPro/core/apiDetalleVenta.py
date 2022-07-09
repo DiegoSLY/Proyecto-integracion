@@ -3,14 +3,14 @@ import requests
 import json
 
 
-def getAllVentas():
+def getAllDetVentas():
     try:
-        key="ventas"
+        key="DetallesVentas"
         url="https://springbootventa.herokuapp.com/" + key
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
             data = respuesta.json()
-            pprint(data)
+            #pprint(data)
             print(print("se logró"+ str(respuesta)))
         else:
             print(print("NO se logró" + str(respuesta)))
@@ -18,18 +18,18 @@ def getAllVentas():
     except Exception as e:
         print(e)
 
-#getAllVentas()
+#getAllDetVentas()
 
-def getVenta(id):
+def getDetVenta(id):
 
     try:
-        url="https://springbootventa.herokuapp.com/venta/"+ str(id)
+        url="https://springbootventa.herokuapp.com/DetalleVenta/"+ str(id)
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
             print(print("se logró"+ str(respuesta)))
             data = respuesta.json()
             print(str(respuesta))
-            print(data)
+            #print(data)
             return data
         else:
             print(print("NO se logró, id no encontrada"+ str(respuesta)))
@@ -37,11 +37,11 @@ def getVenta(id):
     except Exception as e:
         print(e)
 
-#getVenta(1)
+#getDetVenta(1)
 
-def gettVentaByDetalle(detalle):
+def getVentaByDetalle(detalle):
     try:
-        key="ventas"
+        key="DetallesVenta"
         url="https://springbootventa.herokuapp.com/" + key
         data=False
         respuesta = requests.get(url)
@@ -49,7 +49,7 @@ def gettVentaByDetalle(detalle):
             print(print("se logró"+ str(respuesta)))
             data = respuesta.json()
             for i in data:
-                if i["detalle_ven_id_detven"] == detalle:
+                if i["producto_det"] == detalle:
                     print("lo encontre")
                     data = i
                     print(data)
@@ -64,64 +64,63 @@ def gettVentaByDetalle(detalle):
     except Exception as e:
         print(e)
         
-#gettVentaByDetalle(2);
+#getVentaByDetalle("guitarra");
 
-def loadVenta(product_id,user_id,detalle_ven_id_detven):
+def loadDetVenta(producto_det,user_det,hora_det,fecha_det,cantidad_det,estado_det,tipopago_id_tpag):
     try:
-        url="https://springbootventa.herokuapp.com/loadInVenta"
+        url="https://springbootventa.herokuapp.com/loadDetalleVenta"
         respuesta = False
     
-        if len(product_id) <= 10:
-            dato = {"product_id": product_id,"user_id": user_id,"detalle_ven_id_detven": detalle_ven_id_detven}
-            respuesta = requests.post(url, json = dato )
-            if respuesta.status_code == 200:
-                print(print("se logró"+ str(respuesta)))
-            else:
-                print(print("NO se logró, id no encontrada"+ str(respuesta)))
+        dato = {"producto_det": producto_det,"user_det": user_det,"hora_det": hora_det,"fecha_det": fecha_det,"cantidad_det":cantidad_det,
+        "estado_det":estado_det,"tipoPago": tipopago_id_tpag}
+        respuesta = requests.post(url, json = dato )
+        if respuesta.status_code == 200:
+            print(print("se logró"+ str(respuesta)))
         else:
-            print("el largo del rut excede el maximo")
+            print(print("NO se logró, id no encontrada"+ str(respuesta)))
+        
     except Exception as e:
         print("No se logró")
         print(e)
         data = False
-        pprint(data)
+        #pprint(data)
     return  respuesta
       
-#loadVenta("24",24,4)  
+#loadDetVenta("Bateria","Vanesuki","16:38","02/01/2022","1","15")  
 
-def updateVenta(id_ventas,product_id,user_id,detalle_ven_id_detven):
+def updateDetVenta(id_detven,producto_det,user_det,hora_det,cantidad_det,estado_det,fecha_det,tipoPago):
     try:
-        url="https://springbootventa.herokuapp.com/updateVenta"
+        url="https://springbootventa.herokuapp.com/updateDetalleVenta"
         respuesta = False
-    
-        if len(id_ventas) <= 10:
-            dato = {'id_ventas': id_ventas,"product_id":product_id,"user_id":user_id,"detalle_ven_id_detven":detalle_ven_id_detven}
-            respuesta = requests.put(url, json = dato )
-            if respuesta.status_code == 200:
-                print(print("se logró"+ str(respuesta)))
-            else:
-                print(print("NO se logró, id no encontrada"+ str(respuesta)))
+        dato = {"id_detven":id_detven,"producto_det": producto_det,"user_det": user_det,"hora_det": hora_det,"cantidad_det":cantidad_det,"estado_det":estado_det,"fecha_det": fecha_det,"tipoPago": tipoPago}
+        respuesta = requests.put(url, json = dato )
+        if respuesta.status_code == 200:
+            pprint(dato)
+            print(print("se logró ACTUALIZAR"+ str(respuesta)))
         else:
-            print("el largo del rut excede el maximo")
+            print(print("NO se logró ACTUALIZAR, id no encontrada"+ str(respuesta)))
+        
     except Exception as e:
         print("No se logró, hubo un error")
         print(e)
         data = False
-        pprint(data)
+        #pprint(data)
     return  respuesta  
 
-#getAllVentas()
-#updateVenta("1","2","84","1")
+#getAllDetVentas()
+#updateDetVenta("2","guitarra","vannesa","20:00","26/05/2022","1","Aceptado","2")
 
+
+#No funciona
 def delVentaById(id):
     try:
-        data = getVenta(id)
+        data = getDetVenta(id)
         respuesta = False
-        url="https://springbootventa.herokuapp.com/delVenta/" + str(id)
+        url="https://springbootventa.herokuapp.com/delDetalleVenta" + str(id)
         if id >= 0:
             respuesta = requests.delete(url)
             if respuesta.status_code == 200:
-                print("se logró"+ str(respuesta) + " eliminaste a la venta: " + data["id_ventas"])
+                print("se logró"+ str(respuesta) + " eliminaste a : " + data["producto_det"])
                 print("se logró")
             else:
                 print(print("NO se logró, id no encontrada"+ str(respuesta)))
@@ -132,10 +131,8 @@ def delVentaById(id):
     except Exception as e:
         print("No se logró, hubo un error")
         print(e)
+    
 
 #delVentaById(4)
-#getVenta(4)
-#getAllVentas()
-    
-
-    
+#getDetVenta(4)
+#getAllDetVentas()

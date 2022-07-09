@@ -29,7 +29,7 @@ def productos(request):
 
 #REGISTER    
 def register(request):
-    return render(request, 'ingreso/register.html')
+    return render(request, 'web/register.html')
     
 def registering(request):
     try:
@@ -57,7 +57,7 @@ def registering(request):
 
 #LOGIN
 def login(request):
-    return render(request, 'ingreso/login.html')
+    return render(request, 'web/login.html')
 
 def logueado(request):
     try:

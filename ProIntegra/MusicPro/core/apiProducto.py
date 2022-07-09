@@ -6,11 +6,11 @@ import json
 def getAllPro():
     try:
         key="productos"
-        url="https://springbootproductos.herokuapp.com/" + key
+        url="https://springbootproducto.herokuapp.com/" + key
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
             data = respuesta.json()
-            pprint(data)
+            #pprint(data)
             print(print("se logró"+ str(respuesta)))
         else:
             print(print("NO se logró" + str(respuesta)))
@@ -23,13 +23,13 @@ def getAllPro():
 def getProducto(id):
 
     try:
-        url="https://springbootproductos.herokuapp.com/productos/"+ str(id)
+        url="https://springbootproducto.herokuapp.com/productos/"+ str(id)
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
-            print(print("se logró"+ str(respuesta)))
+            #print(print("se logró"+ str(respuesta)))
             data = respuesta.json()
-            print(str(respuesta))
-            print(data)
+            #print(str(respuesta))
+            #print(data)
             return data
         else:
             print(print("NO se logró, id no encontrada"+ str(respuesta)))
@@ -42,7 +42,7 @@ def getProducto(id):
 def getProByType(tipo):
     try:
         key="productos"
-        url="https://springbootproductos.herokuapp.com/" + key
+        url="https://springbootproducto.herokuapp.com/" + key
         data=False
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
@@ -69,7 +69,7 @@ def getProByType(tipo):
 
 def loadProducto(nom_pro,des_pro,pric_pro,stock_pro,tipo_id_tipo,img_pro):
     try:
-        url="https://springbootproductos.herokuapp.com/loadProducto"
+        url="https://springbootproducto.herokuapp.com/loadProducto"
         respuesta = False
         status = False
         
@@ -92,21 +92,18 @@ def loadProducto(nom_pro,des_pro,pric_pro,stock_pro,tipo_id_tipo,img_pro):
 
 #loadProducto("Guitarra","madera cahoba profesional Fender","90000",2, 12)  
 
-def updateProducto(id_pro,nom_pro,des_pro,pric_pro,tipo_id_tipo,stock_pro,img_pro):
+def updateProducto(id_pro,nom_pro,des_pro,pric_pro,stock_pro,desc_pro,img_pro,tipo):
     try:
-        url="https://springbootproductos.herokuapp.com/updateProduct"
+        url="https://springbootproducto.herokuapp.com/updateProduct"
         respuesta = False
-    
-        if len(pric_pro) <= 10:
-            dato = {'id_pro': id_pro,"nom_pro":nom_pro,"des_pro":des_pro,
-            "pric_pro":pric_pro,"tipo_id_tipo":tipo_id_tipo,"stock_pro":stock_pro,"img_pro":img_pro}
-            respuesta = requests.put(url, json = dato )
-            if respuesta.status_code == 200:
-                print("se logró"+ str(respuesta))
-            else:
-                print("NO se logró, id no encontrada"+ str(respuesta))
+        dato = {'id_pro': id_pro,"nom_pro":nom_pro,"des_pro":des_pro,
+        "pric_pro":pric_pro,"stock_pro":stock_pro,"desc_pro":desc_pro,"img_pro":img_pro,"tipo":tipo}
+        respuesta = requests.put(url, json = dato )
+        if respuesta.status_code == 200:
+            print("se logró"+ str(respuesta))
         else:
-            print("el largo del rut excede el maximo")
+            print("NO se logró, id no encontrada"+ str(respuesta))
+        
     except Exception as e:
         print("No se logró, hubo un error")
         print(e)
@@ -121,7 +118,7 @@ def delProductoById(id):
     try:
         data = getProducto(id)
         respuesta = False
-        url="https://springbootproductos.herokuapp.com/delPro/" + str(id)
+        url="https://springbootproducto.herokuapp.com/delPro/" + str(id)
         
         respuesta = requests.delete(url)
         if respuesta.status_code == 200:
@@ -137,3 +134,4 @@ def delProductoById(id):
 #delProductoById(34)
 #getProducto(4)
 #getAllPro()
+    
