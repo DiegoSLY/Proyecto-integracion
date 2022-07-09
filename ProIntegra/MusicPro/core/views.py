@@ -12,15 +12,12 @@ def base(request):
 
 def index(request):
     return render(request, 'web/index.html')
-    
-def informes(request):
-    return render(request, 'ingreso/informes.html')    
-
+       
 def bodega(request):
     return render(request, 'products/bodega.html')
 
 def confi_admin(request):
-    return render(request, 'ingreso/confi_admin.html')
+    return render(request, 'admin/confi_admin.html')
 
 #PRODUCTOS
 def productos(request):
