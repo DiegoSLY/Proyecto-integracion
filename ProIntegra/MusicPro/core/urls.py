@@ -14,6 +14,5 @@ urlpatterns = [
     path("updateing/", views.updateing, name="updateing"), 
     path("deleteing/", views.deleteing, name="deleteing"),   
     path("confi_admin/", views.confi_admin, name="confi_admin"),
-    path("bodega/", views.bodega, name="bodega"),  
-    path("informes/", views.informes, name="informes"),   
+    path("bodega/", views.bodega, name="bodega"),    
 ]
