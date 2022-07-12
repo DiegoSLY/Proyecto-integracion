@@ -17,7 +17,7 @@ urlpatterns = [
     path("deleteing/", views.deleteing, name="deleteing"),   
     #Redirecciones
     path("confi_admin/", views.confi_admin, name="confi_admin"),
-    
+    path("confi_bode/", views.confi_bode, name="confi_bode"),    
     #VISTAS GENERALES
     #BODEGA
     path("bodega/", views.bodega, name="bodega"), 

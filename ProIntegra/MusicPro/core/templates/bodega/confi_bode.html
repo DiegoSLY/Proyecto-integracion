@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+  
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% endblock css %}
+
+    <div class="container title-header text_center" >
+        <div class="row">
+        <hr>
+        <hr>
+        <h1>Configuracion Bodeguero</h1>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <tbody>
+            <div class="text-center">
+                <div class="row" >
+                    <div class="col text-center" role="group" aria-label="Basic example">
+                        <a href="{% url 'reg_producto' %}" class="btn btn-warning"><h3>Agregar productos a tienda<h3></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
+            <div class="text-center">
+                <div class="row" >
+                    <div class="col text-center" role="group" aria-label="Basic example">
+                        <a href="{% url 'bodega' %}" class="btn btn-info"><h3>Ver Bodega<h3></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
+          
+        </tbody>
+        
+    </div>
+
+{% endblock contenido %} 

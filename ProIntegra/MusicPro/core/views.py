@@ -19,6 +19,9 @@ def index(request):
 def confi_admin(request):
     return render(request, 'admin/confi_admin.html')
 
+def confi_bode(request):
+    return render(request, 'bodega/confi_bode.html')
+
 
 
 #PRODUCTOS
@@ -200,7 +203,7 @@ def logueado(request):
             if data["tipo_user"] == "Cliente":
                 return redirect("index")
             elif data["tipo_user"] == "Bodeguero":
-                return redirect("bodega")
+                return redirect("confi_bode")
             elif data["tipo_user"] == "Vendedor":
                 return redirect("vendedor")
             elif data["tipo_user"] == "Administrador":
