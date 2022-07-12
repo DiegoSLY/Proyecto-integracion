@@ -1,0 +1,69 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+        <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" id="">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% endblock css %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="text-center alert-success bg-success {{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div id="login">
+        <h2 class="text-center text-info pt-5">MUSIC PRO</h2>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        
+                        <form id="login-form" enctype="multipart/form-data" class="form" action="/registering_pro/" method="POST">
+                            {% csrf_token %}
+                            <h3 class="text-center text-info">Product Register</h3>
+							<div class="form-group">
+                                <label for="Nombre" class="text-info">Nombre Producto:</label><br>
+                                <input type="text" name="nom_pro" id="nom_pro" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label type="text" class="text-info">Imagen:</label><br>
+                                <input type="file" name="img_pro" id="img_pro" value ="hola" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="text" class="text-info">Descripcion:</label><br>
+                                <input type="text" name="des_pro" id="des_pro" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="text" class="text-info">Stock:</label><br>
+                                <input type="number" name="stock_pro" id="stock_pro" class="form-control" required>
+                            </div>
+							<div class="form-group">
+                                <label for="text" class="text-info">tipo:</label><br>
+                                <select type="text" name="tipo_id_tipo" class="form-control" id="tipo_id_tipo" required>
+                                    <option hidden>Tipo Producto</option>
+                                    {%for i in data%}
+                                        <option>{{i.nom_tipo}}</option>
+                                    
+                                    {%endfor%}
+                                </select>
+                            </div>
+							<div class="form-group">
+                                <label for="Edad" class="text-info">Precio:</label><br>
+                                <input type="number" name="pric_pro" id="pric_pro" min="1" class="form-control" required>
+                            </div>
+                            <div id="register-link" class="text-center">
+                                <hr>
+                                <hr>
+                                <hr>
+                                <input type="submit" name="submit" class="text-center btn btn-info btn-md " value="Registrar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %} 

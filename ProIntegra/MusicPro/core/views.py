@@ -7,17 +7,19 @@ from core.apiTipoProducto import getAllTipoPro
 from core.apiDetalleVenta import getAllDetVentas, getDetVenta, loadDetVenta, updateDetVenta
 import base64
 
+
+
+
 def base(request):
     return render(request, 'web/base.html')
 
 def index(request):
     return render(request, 'web/index.html')
-       
-def bodega(request):
-    return render(request, 'products/bodega.html')
 
 def confi_admin(request):
     return render(request, 'admin/confi_admin.html')
+
+
 
 #PRODUCTOS
 def productos(request):
@@ -34,12 +36,12 @@ def data_producto(request):
                 "datalen" : datalen,
                 }
 
-    return render(request, 'admin/data_producto.html', context)
+    return render(request, 'web/product_data.html', context)
 
 def reg_producto(request):
     data = getAllTipoPro()
     context = {"data":data}
-    return render(request, 'product/reg_producto.html', context)
+    return render(request, 'web/reg_product.html', context)
 
 #BODEGA
 def bodega(request):
@@ -59,7 +61,7 @@ def bodega(request):
                 "vendedores" : vendedores
                 }
 
-    return render(request, 'bode/bodega.html', context)
+    return render(request, 'bodega/bodega.html', context)
 
 def bodega_aprueba(request):
     id_detven = request.POST["id_detven"]
@@ -114,7 +116,7 @@ def registering_pro(request):
         if status == True:
             print(status)
             messages.add_message(request=request, level=messages.SUCCESS, message="Registrado con exito : " + nom_pro)
-            return redirect("data_producto")
+            return redirect("product_data")
         else:
             print(status)
             messages.add_message(request=request, level=messages.ERROR, message="DATOS INCORRECTOS")
@@ -129,7 +131,7 @@ def deleteing_pro(request):
     id_pro = request.POST["id_pro"]
     print(id_pro)
     delProductoById(id_pro)
-    return redirect("data_producto")
+    return redirect("product_data")
     
 def updateing_pro(request):
     
@@ -147,31 +149,7 @@ def updateing_pro(request):
             stock_pro = data["stock_pro"]
             img_pro = data["img_pro"]
             updateProducto(id_pro,nom_pro,des_pro,str(pric_pro),stock_pro,str(desc_pro),img_pro,tipo_id_tipo)
-            return redirect("data_producto")
-        else:
-            print("error desconocido :C")
-    except Exception as e:
-        print(e)
-
-def updateing_pro_descuento(request):
-    try:
-        if request.method == "POST":
-            desc_pro = request.POST["desc_pro"]
-            id_pro = request.POST["id_pro"] 
-            data = getProducto(id_pro)
-            nom_pro = data["nom_pro"]
-            des_pro = data["des_pro"]
-            tipo= data["tipo"]
-            stock_pro = data["stock_pro"]
-            img_pro = data["img_pro"]
-            pric_pro = (data["pric_pro"])
-            desc_pro = (int(desc_pro)/100)
-            print(desc_pro)
-            pric_pro = (int(pric_pro) -(int(pric_pro)*(desc_pro)))
-            print(pric_pro)
-            
-            updateProducto(id_pro,nom_pro,des_pro,str(pric_pro),stock_pro,desc_pro,img_pro,tipo)
-            return redirect("data_producto")
+            return redirect("product_data")
         else:
             print("error desconocido :C")
     except Exception as e:
@@ -227,7 +205,7 @@ def logueado(request):
             elif data["tipo_user"] == "Bodeguero":
                 return redirect("bodega")
             elif data["tipo_user"] == "Vendedor":
-                return redirect("index")
+                return redirect("vendedor")
             elif data["tipo_user"] == "Administrador":
                 return redirect("confi_admin")
             elif data["tipo_user"] == "Contador":
@@ -304,3 +282,66 @@ def updateing(request):
             print("error desconocido :C")
     except Exception as e:
         print(e)
+
+
+#VENDEDOR
+def vendedor(request):
+    datalen = len(getAllDetVentas())
+    data = getAllDetVentas()
+    users = getAllUsers()
+    vendedores = []
+    for u in users:
+        if u["tipo_user"] == "Contador":
+            vendedores.append(u)
+            #print(vendedores)
+    
+    
+    context = {"data" : data,
+                "datalen" : datalen,
+                "vendedores" : vendedores
+                }
+    return render(request, 'vendedor/vende.html', context)
+
+
+def vendedor_aprueba(request):
+    id_detven = request.POST["id_detven"]
+    data = getDetVenta(id_detven)
+    producto_det = data["producto_det"]
+    user_det = data["user_det"]
+    hora_det = data["hora_det"]
+    fecha_det = data["fecha_det"]
+    cantidad_det = data["cantidad_det"]
+    estado_det = "Aprobado"
+    tipoPago = data["tipoPago"]
+    updateDetVenta(id_detven,producto_det,user_det,hora_det,cantidad_det,estado_det,fecha_det,tipoPago)
+    return redirect("vendedor")
+
+def vendedor_rechaza(request):
+    id_detven = request.POST["id_detven"]
+    data = getDetVenta(id_detven)
+    producto_det = data["producto_det"]
+    user_det = data["user_det"]
+    hora_det = data["hora_det"]
+    fecha_det = data["fecha_det"]
+    cantidad_det = data["cantidad_det"]
+    estado_det = "Solicitud"
+    tipoPago = data["tipoPago"]
+    updateDetVenta(id_detven,producto_det,user_det,hora_det,cantidad_det,estado_det,fecha_det,tipoPago)
+    return redirect("vendedor")
+
+#VENTAS
+def vent(request):
+
+    datalen = len(getAllPro())
+    data = getAllPro()
+
+    context = {"data" : data,
+                "datalen" : datalen,
+    }
+
+    return render(request, 'venta/ventas.html', context)
+
+
+
+
+  
