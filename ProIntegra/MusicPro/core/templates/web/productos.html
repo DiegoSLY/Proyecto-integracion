@@ -3,47 +3,51 @@
 {% load static %}
 {% block contenido %}
     {% block css %}
-        <!-- CSS only -->
         <link rel="stylesheet" href="{% static 'app/css/product.css' %}">
         <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
     {% endblock css %}
 
 <div class="container">
-        <br>
+    <hr> 
     <div class="row">
         <div class="col-md-12">
             <div class="title-header text-center">
                 <br>
-                <h1>Productos</h1>
+                <h1>Catalogo de Productos</h1>
             </div>
         </div>
     </div>
+
+
+
     <div class="container">
         <div class="row">
             {% for i in data %}
-                <div class="col-lg-3 col-md-8 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-8 col-sm-6 col-xs-6">
+                    <br/>
+                    <br/>
                     <div class="box card">
                         <div class="box cardImg">
                             <img src="data:image/jpeg;base64,{{i.img_pro}}" class="card-img-top" alt="...">
                         </div>
                         <div class="info">
+
                             <h3>{{i.nom_pro}}</h3>
-                            <p class="bg-info"><span>{{i.tipo.nom_tipo}}</span> Stock: {{i.stock_pro}}</p>
-                            <p><span class="bg-info">{{i.pric_pro}} CLP</span></p>
-                            <button class="btn btn-success btn-filter">Lo quiero</button>
+                            <p class="text-secondary"><span>{{i.tipo.nom_tipo}}</span> Stock: {{i.stock_pro}}</p>
+                            <p><span class="text-secondary">{{i.pric_pro}} CLP</span></p>
+                            <button class="btn btn-success btn-filter">Agregar al carrito</button>
                             <br>
                         </div>
                     </div>
                 </div>
+
+
               
             {%endfor%}
             <br>
         </div>
         <br>
-    </div>
-    <br>
-    <hr>
-            
-    
+    </div>  
+    <hr>            
 </div>
 {% endblock contenido %} 

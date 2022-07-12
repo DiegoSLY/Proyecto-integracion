@@ -4,10 +4,10 @@
 {% block contenido %}
   
     {% block css %}
-
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% endblock css %}
     <!-- CARROUSEL-->
     {% if messages %}
@@ -40,7 +40,18 @@
             <div class="text-center">
                 <div class="row" >
                     <div class="col text-center" role="group" aria-label="Basic example">
-                        <a href="" class="btn btn-info"><h3>Ver y generar informes<h3></a>
+                        <a href="{% url 'bodega' %}" class="btn btn-info"><h3>Ver Bodega<h3></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
+            <div class="text-center">
+                <div class="row" >
+                    <div class="col text-center" role="group" aria-label="Basic example">
+                        <a href="{% url 'vendedor' %}" class="btn btn-warning"><h3>Ver Vista Vendedor<h3></a>
                     </div>
                 </div>
             </div>

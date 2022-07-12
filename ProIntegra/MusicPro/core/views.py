@@ -174,11 +174,9 @@ def registering(request):
         status = loadUser(nom_user,rut_user,edad,tipo_user,email_user,pass_user)
         if status == True:
             print(status)
-            messages.add_message(request=request, level=messages.SUCCESS, message="Registrado con exito : " + nom_user)
             return redirect("login")
         else:
             print(status)
-            messages.add_message(request = request, level=messages.ERROR, message="DATOS INCORRECTOS")
             return redirect("register")
     except Exception as e:
         print(e)
@@ -198,7 +196,6 @@ def logueado(request):
         status = login_user(email_user,pass_user)
         if status == True:
             print(status)
-            messages.add_message(request=request, level=messages.SUCCESS, message="Logueado con exito : ")
             data = getUserByEmail(email_user)
             if data["tipo_user"] == "Cliente":
                 return redirect("index")
@@ -212,7 +209,6 @@ def logueado(request):
                 return redirect("index")
         else:
             print(status)
-            messages.add_message(request = request, level=messages.ERROR, message="DATOS INCORRECTOS")
             return redirect("login")
     except Exception as e:
         print(e)    
