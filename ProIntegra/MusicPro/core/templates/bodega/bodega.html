@@ -9,32 +9,26 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% endblock css %}
-    <!-- CARROUSEL-->
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="text-center alert-success bg-success {{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <br/>
+    <div class="container title-header text_center">
+        <div class="row">
 
-    <div class="container" >
-        
-        <h1>Pedidos Solicitados | Bodeguero</h1>
+        <h1>Pedidos Solicitados / Bodeguero</h1>
+        <hr>
         <hr>
         <tbody>
             
             <div class="card-group container">
                 
-                <table class="table table-success table-striped">
-                    <thead class="table-primary">
+                <table class="table table-warning table-striped">
+                    <thead class="table-secondary">
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">ID_PRODUCTO|ID_CLIENTE</th>
-                        <th scope="col">FECHA</th>
-                        <th scope="col">CANTIDAD</th>
-                        <th scope="col">ESTADO</th>
-                        <th scope="col">TIPO PAGO</th>
+                        <th scope="col">Id producto/Id Cliente</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Tipo de pago</th>
                         <th scope="col center">Accion</th>
                       </tr>
                     </thead>
@@ -54,11 +48,11 @@
                                             <form id="login-form2" class="form" action="/bodega_aprueba/" method="POST">
                                                 {% csrf_token %}
                                                 <input type="hidden" id="id_detven" name="id_detven" value="{{i.id_detven}}">
-                                                <button value="submit" type="submit" name="submit2" class="btn btn-success btn-sm">ACEPTAR PEDIDO</button>
+                                                <button value="submit" type="submit" name="submit2" class="btn btn-success btn-sm">Aceptar Pedido</button>
                                             </form>
                                         </div>
                                         <div class="col text-center" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-danger btn-sm">RECHAZAR PEDIDO</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Rechazar Pedido</button>
                                         </div>
                                     </div>
                                 </td>

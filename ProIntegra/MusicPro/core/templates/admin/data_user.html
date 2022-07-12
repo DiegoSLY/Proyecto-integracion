@@ -33,14 +33,14 @@
                             <div class="table-container">
                                 <table class="table table-filter">
                                     <tbody>
-                                        <h1> Cantidad Usuarios: {{datalen}} </h1>
+                                        <h1> Cantidad de Usuarios: {{datalen}} </h1>
                                         <br/>
                                         <br/>
                                         {% for i in data %}
                                             <tr data-status="pagado">
                                                     <div class="list-group">
                                                         <div class="list-group">
-                                                            <h4 class="title alert-dark">
+                                                            <h4 class="title alert-warning">
                                                                 <span class="list-group pull-right text-dark">Edad: {{i.age_user}}</span>
                                                                 {{i.nom_user}}
                                                                 <p>Rut: {{i.rut_user}}</p>
@@ -57,9 +57,12 @@
                                                                             <option>Vendedor</option>
                                                                             <option>Cliente</option>
                                                                         </select>
+                                                                        <br>
                                                                         <input type="hidden" id="email_user" name="email_user" value="{{i.email_user}}">
                                                                         <button value="submit" type="submit" name="submit" class="btn btn-warning btn-filter" data-target="pendiente">EDITAR</button>
                                                                     </form>
+                                                                        <br>
+                                                                        <br>
                                                                     <form id="login-form2" class="form" action="/deleteing/" method="POST">
                                                                         {% csrf_token %}
                                                                         <input type="hidden" id="id_user" name="id_user" value="{{i.id_user}}">
@@ -67,11 +70,6 @@
                                                                     </form>
                                                                 </span>    
                                                             </h4>
-                                                        </div>
-                                                        <div class="pull-right">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-info btn-filter" data-target="pagado"><a class="text-white" href="{% url 'data_user' %}">INFORME-COMPRAS<a></button>
-                                                            </div>
                                                         </div>
                                                         <hr>
                                                         <hr>

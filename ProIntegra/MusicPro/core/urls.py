@@ -35,6 +35,4 @@ urlpatterns = [
     #VENTAS
     path("ventas/", views.vent, name="vent"),
 
-    
-
 ]
